@@ -1,0 +1,11 @@
+<mat-nav-list class="sizeList">
+    <mat-list-item class="boxes" [ngClass]="{'isSelected':stock.nameStock ===selectedStockName}" *ngFor="let stock of stocksNameAndSymbol" (click)="onSelected(stock.symbol,stock.nameStock)">
+     {{ stock.nameStock }}   
+    </mat-list-item>
+  </mat-nav-list>
+  
+  <app-present-stock 
+  [dataStockSelected]="dataStockSelected"
+   [selectedStockName]="selectedStockName"> 
+  </app-present-stock>
+  
