@@ -1,3 +1,9 @@
+ h1 {
+    text-align: center;
+    margin-top: 4%;
+    font-size: 58px;
+    color: LightBlue;
+}
 .sizeList {
     margin-top: 10%;
     width: 20%;

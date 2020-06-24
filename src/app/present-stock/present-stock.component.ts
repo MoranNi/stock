@@ -6,41 +6,34 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
   styleUrls: ['./present-stock.component.css']
 })
 export class PresentStockComponent implements OnInit, OnChanges {
-   @Input() dataStockSelected ={};
+  @Input() dataStockSelected = {};
   @Input() selectedStockName: string = "";
-  stockXvalue = [];
-  stockYvalue = [];
   colorsChart = [];
   chartData = [];
   chartLabels = [];
 
-
   chartOptions = {
     responsive: true
   };
+
   constructor() { }
 
   ngOnInit(): void {
-
-   console.log(this.dataStockSelected);
-    this.stockXvalue = this.dataStockSelected["dates"];
-    this.stockYvalue = this.dataStockSelected["prices"];
-
-  this.chartsData();
+    console.log(this.dataStockSelected);
+    this.chartsData(this.dataStockSelected["dates"],this.dataStockSelected["prices"]);
   }
 
-  ngOnChanges(){
-    this.stockXvalue = this.dataStockSelected["dates"];
-    this.stockYvalue = this.dataStockSelected["prices"];
-  this.chartsData();
+  ngOnChanges() {
+    this.chartsData(this.dataStockSelected["dates"],this.dataStockSelected["prices"]);
   }
 
-chartsData(){
-  let label: string = 'Daily time series stock for ' + this.selectedStockName;
+  chartsData(dates, prices) {
+    let label: string = 'Daily time series stock for ' + this.selectedStockName;
+   
     this.chartData = [
-      { data: this.stockYvalue, label: label },
+      { data: prices, label: label },
     ];
-    this.chartLabels = this.stockXvalue;
+    this.chartLabels = dates;
 
     this.colorsChart = [
       {
@@ -53,6 +46,6 @@ chartsData(){
       },
 
     ];
-}
+  }
 
 }
